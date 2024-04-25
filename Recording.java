@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Set;
 
 public class Recording{
-	private final int year;
-	private final String artist;
 	private final String title;
+	private final int year;
+	private final String artist;	
 	private final Set<String> genre;
 
 	public Recording(String title, String artist, int year, Set<String> genre) {

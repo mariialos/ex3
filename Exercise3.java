@@ -38,8 +38,11 @@ public class Exercise3 {
 					line = in.readLine();
 					genres.add(line);
 				}
+				Recording rec = new Recording(items[1], items[0], year, genres);
+				recordings.add(rec);
 			}
-			
+			in.close();
+			file.close();
 		}catch(NumberFormatException e){
 			System.err.println("Fel i filen " + fileName + "!");	
 		}catch(FileNotFoundException e) {
