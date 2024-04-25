@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -25,9 +27,21 @@ public class Exercise3 {
 			String line = in.readLine();
 			int numRecs = Integer.parseInt(line);
 			
+			for(int i = 0; i < numRecs; i++) {
+				line = in.readLine();
+				String[] items = line.split(";");
+				int year = Integer.parseInt(items[2]);
+				line = in.readLine();
+				Set<String> genres = new HashSet<>();
+				int numGenres = Integer.parseInt(line);
+				for(int j = 0; j < numGenres; j++) {
+					line = in.readLine();
+					genres.add(line);
+				}
+			}
 			
 		}catch(NumberFormatException e){
-			System.err.println("Fel i filen " + fileName);	
+			System.err.println("Fel i filen " + fileName + "!");	
 		}catch(FileNotFoundException e) {
 			System.err.println("Filen " +fileName+ " kan inte öppnas!");
 		}catch(IOException e) {
