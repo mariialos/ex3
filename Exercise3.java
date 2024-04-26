@@ -1,5 +1,3 @@
-//package ex3;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -17,33 +15,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-
 public class Exercise3 {
 
 	private final List<Recording> recordings = new ArrayList<>();
 
 	public void exportRecordings(String fileName) {
 		try {
-		FileWriter file = new FileWriter(fileName);
-		PrintWriter out = new PrintWriter(file);
-		for(Recording rec : recordings) {
-			out.println("<recording>");
+			FileWriter file = new FileWriter(fileName);
+			PrintWriter out = new PrintWriter(file);
+			for (Recording rec : recordings) {
+				out.println("<recording>");
 				out.println("\t<artist>" + rec.getArtist() + "</artist>");
 				out.println("\t<title>" + rec.getTitle() + "</title>");
 				out.println("\t<year>" + rec.getYear() + "</year>");
 				out.println("\t<genres>");
-				for(String genre : rec.getGenre()) {
+				for (String genre : rec.getGenre()) {
 					out.println("\t\t<genre>" + genre + "</genre>");
-				} //for genre
-				
+				} // for genre
+
 				out.println("\t</genres>");
-			out.println("\t</recording>");
-		}// for rec
-		out.close();
-		file.close();
-		}catch(FileNotFoundException e) {
+				out.println("\t</recording>");
+			} // for rec
+			out.close();
+			file.close();
+		} catch (FileNotFoundException e) {
 			System.err.println("Kan inte skriva filen " + fileName);
-		}catch(IOException e){
+		} catch (IOException e) {
 			System.err.println("IO-fel: " + e.getMessage());
 		}
 
@@ -55,15 +52,15 @@ public class Exercise3 {
 			BufferedReader in = new BufferedReader(file);
 			String line = in.readLine();
 			int numRecs = Integer.parseInt(line);
-			
-			for(int i = 0; i < numRecs; i++) {
+
+			for (int i = 0; i < numRecs; i++) {
 				line = in.readLine();
 				String[] items = line.split(";");
 				int year = Integer.parseInt(items[2]);
 				line = in.readLine();
 				Set<String> genres = new HashSet<>();
 				int numGenres = Integer.parseInt(line);
-				for(int j = 0; j < numGenres; j++) {
+				for (int j = 0; j < numGenres; j++) {
 					line = in.readLine();
 					genres.add(line);
 				}
@@ -72,11 +69,11 @@ public class Exercise3 {
 			}
 			in.close();
 			file.close();
-		}catch(NumberFormatException e){
-			System.err.println("Fel i filen " + fileName + "!");	
-		}catch(FileNotFoundException e) {
-			System.err.println("Filen " +fileName+ " kan inte öppnas!");
-		}catch(IOException e) {
+		} catch (NumberFormatException e) {
+			System.err.println("Fel i filen " + fileName + "!");
+		} catch (FileNotFoundException e) {
+			System.err.println("Filen " + fileName + " kan inte öppnas!");
+		} catch (IOException e) {
 			System.err.println("IO-fel har inträffat!");
 		}
 	}
@@ -84,36 +81,35 @@ public class Exercise3 {
 	public Map<Integer, Double> importSales(String fileName) {
 		Map<Integer, Double> sales = new HashMap<>();
 		try {
-		//för binära filer
-		FileInputStream file = new FileInputStream(fileName);
-		DataInputStream in = new DataInputStream(file);
-		int numRec = in.readInt();
-		for (int i = 0; i < numRec; i++) {
-			int year = in.readInt();
-			int month = in.readInt();
-			int key = year * 100 + month;
-			in.readInt(); //läser in utan att spara dags nummer
-			double value = in.readDouble();
-			//Double för att kunna tilldela null:
-			Double sum = sales.get(key);
-			if(sum == null) {
-				sales.put(key, value);
-			}else {
-				//automatisk unboxing - konvertering av sum från wrapper type Double to primitive double value
-				sales.replace(key, sum + value);
-			}			
-		}// for i
-		in.close();
-		file.close();
-		}catch(FileNotFoundException e) {
-			System.err.println("Filen " +fileName+ " kan inte öppnas!");
-		}catch(IOException e) {
+			// för binära filer
+			FileInputStream file = new FileInputStream(fileName);
+			DataInputStream in = new DataInputStream(file);
+			int numRec = in.readInt();
+			for (int i = 0; i < numRec; i++) {
+				int year = in.readInt();
+				int month = in.readInt();
+				int key = year * 100 + month;
+				in.readInt(); // läser in utan att spara dags nummer
+				double value = in.readDouble();
+				// Double för att kunna tilldela null:
+				Double sum = sales.get(key);
+				if (sum == null) {
+					sales.put(key, value);
+				} else {
+					// automatisk unboxing - konvertering av sum från wrapper type Double to
+					// primitive double value
+					sales.replace(key, sum + value);
+				}
+			} // for i
+			in.close();
+			file.close();
+		} catch (FileNotFoundException e) {
+			System.err.println("Filen " + fileName + " kan inte öppnas!");
+		} catch (IOException e) {
 			System.err.println("IO-fel: " + e.getMessage());
-		}	
-		return sales;
 		}
-		
-	
+		return sales;
+	}
 
 	public List<Recording> getRecordings() {
 		return Collections.unmodifiableList(recordings);

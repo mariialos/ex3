@@ -1,5 +1,3 @@
-//package ex3;
-//test 
 import org.junit.jupiter.api.*;
 
 import java.io.*;
