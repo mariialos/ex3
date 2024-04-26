@@ -1,8 +1,10 @@
 package ex3;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +19,29 @@ public class Exercise3 {
 	private final List<Recording> recordings = new ArrayList<>();
 
 	public void exportRecordings(String fileName) {
+		try {
+		FileWriter file = new FileWriter(fileName);
+		PrintWriter out = new PrintWriter(file);
+		for(Recording rec : recordings) {
+			out.println("<recording>");
+				out.println("\t<artist>" + rec.getArtist() + "</artist>");
+				out.println("\t<title>" + rec.getTitle() + "</title>");
+				out.println("\t<year>" + rec.getYear() + "</year>");
+				out.println("\t<genres>");
+				for(String genre : rec.getGenre()) {
+					out.println("\t\t<genre>" + genre + "</genre>");
+				} //for genre
+				
+				out.println("\t</genres>");
+			out.println("\t</recording>");
+		}// for rec
+		out.close();
+		file.close();
+		}catch(FileNotFoundException e) {
+			System.err.println("Kan inte skriva filen " + fileName);
+		}catch(IOException e){
+			System.err.println("IO-fel: " + e.getMessage());
+		}
 
 	}
 
@@ -64,5 +89,5 @@ public class Exercise3 {
 		this.recordings.clear();
 		this.recordings.addAll(recordings);
 	}
-}
 
+}
