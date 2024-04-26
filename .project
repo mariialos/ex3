@@ -14,4 +14,36 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/ex3/Exercise3.java</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Exercise3.java</locationURI>
+		</link>
+		<link>
+			<name>src/ex3/Exercise3Test.java</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Exercise3Test.java</locationURI>
+		</link>
+		<link>
+			<name>src/ex3/Recording.java</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Recording.java</locationURI>
+		</link>
+		<link>
+			<name>src/ex3/recording_input.txt</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recording_input.txt</locationURI>
+		</link>
+		<link>
+			<name>src/ex3/recording_output.txt</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recording_output.txt</locationURI>
+		</link>
+		<link>
+			<name>src/ex3/sales_input.bin</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/sales_input.bin</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
